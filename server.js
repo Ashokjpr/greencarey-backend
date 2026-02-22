@@ -26,8 +26,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true, // if using cookies or auth
+    origin: [
+      "http://localhost:3000",
+      "https://greencarey-frontend.vercel.app"
+    ],
+    credentials: true,
   })
 );
 
