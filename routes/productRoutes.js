@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     
     // Pagination defaults
     const page = Number(pageNumber) || 1;
-    const limit = Number(limitNumber) || 10;
+    const limit = Number(limitNumber) || 12;
     const skip = (page - 1) * limit;
 
     // Build filter object
