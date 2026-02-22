@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 
     // Filter by subcategory slug (stored in subCategories array on Product)
     if (subCategory) {
-      query.subCategories = subCategory;
+      query.subCategories = { $in: [subCategory] };
     }
 
     if (minPrice || maxPrice) {
