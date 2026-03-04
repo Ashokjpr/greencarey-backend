@@ -79,7 +79,13 @@ const orderSchema = new mongoose.Schema({
     type: String,
     enum: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'],
     default: 'Pending',
-  }
+  },
+  // Shiprocket Shipment Fields
+  shiprocketOrderId: { type: String, default: null },
+  shipmentId: { type: String, default: null },
+  awbCode: { type: String, default: null },
+  courierName: { type: String, default: null },
+  trackingUrl: { type: String, default: null },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Order', orderSchema);

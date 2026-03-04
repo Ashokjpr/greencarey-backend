@@ -47,6 +47,10 @@ const blogSchema = mongoose.Schema(
     count: {
         type: Number,
         default: 0
+    },
+    isDelete: {
+      type: Boolean,
+      default:false
     }
   },
   {

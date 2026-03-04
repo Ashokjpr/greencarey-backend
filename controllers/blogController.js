@@ -59,7 +59,10 @@ exports.createBlog = async (req, res) => {
 // @access  Public
 exports.getAllBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
+    const blogs = await Blog.find({  $or: [
+    { isDelete: false },
+    { isDelete: { $exists: false } }
+  ] }).sort({createdAt: -1,});
 
     res.status(200).json({
       success: true,

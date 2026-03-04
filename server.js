@@ -46,6 +46,7 @@ app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/contact', require('./routes/contactRoutes'));
+app.use('/api/shiprocket', require('./routes/shiprocketRoutes'));
 
 const uploadsPath = path.join(__dirname, '/uploads');
 app.use('/uploads', express.static(uploadsPath));
