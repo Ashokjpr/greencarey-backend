@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
+  orderId: {
+    type: String,
+    unique: true,
+  },  
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -87,5 +91,33 @@ const orderSchema = new mongoose.Schema({
   courierName: { type: String, default: null },
   trackingUrl: { type: String, default: null },
 }, { timestamps: true });
+
+
+//  AUTO ORDER ID GENERATOR
+orderSchema.pre("save", async function (next) {
+  if (!this.orderId) {
+    try {
+      const lastOrder = await mongoose
+        .model("Order")
+        .findOne()
+        .sort({ createdAt: -1 });
+
+      let nextNumber = 1001;
+
+      if (lastOrder && lastOrder.orderId) {
+        const lastNumber = parseInt(lastOrder.orderId.replace("GC", ""));
+        nextNumber = lastNumber + 1;
+      }
+
+      this.orderId = `GC${nextNumber}`;
+
+      next();
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    next();
+  }
+});
 
 module.exports = mongoose.model('Order', orderSchema);
