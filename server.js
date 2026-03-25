@@ -28,6 +28,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
+      "http://13.61.76.130:3000",
       "https://greencarey-frontend.vercel.app"
     ],
     credentials: true,
