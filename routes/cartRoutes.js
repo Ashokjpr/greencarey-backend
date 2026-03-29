@@ -8,7 +8,7 @@ const { protect } = require('../middleware/authMiddleware');
 const populateCart = async (cart) => {
   return await Cart.findById(cart._id).populate({
     path: 'items.product',
-    select: 'name price discountPrice images stock category', // Select necessary fields
+    select: 'name price salePrice images stock category', // Select necessary fields
     populate: { path: 'category', select: 'name' }
   });
 };
